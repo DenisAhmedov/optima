@@ -1,0 +1,5 @@
+venv/
+.idea/
+
+start_pg_container.bat
+.env
