@@ -2,7 +2,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from config.settings import CONTRACTS_PARENT_ID
-from us_ext.utilities.contracts import create_contract, get_contracts, get_contract, update_contract, delete_contract
+from us_ext.utilities import create_contract, get_contracts, get_contract, update_contract, delete_contract
 
 
 class ContractsView(APIView):
