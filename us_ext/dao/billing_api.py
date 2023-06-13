@@ -4,7 +4,7 @@ import json
 from config.settings import BILLING_ADDRESS
 
 
-class Api(object):
+class BillingApiMixin(object):
     def __init__(self, srv_address=BILLING_ADDRESS):
         self.srv_address = srv_address
 
