@@ -1,6 +1,6 @@
 from django.urls import path
 
-from us_ext.views.contracts_views import ContractsView, ContractView
+from us_ext.views import ContractsView, ContractView
 
 urlpatterns = [
     path('contracts/', ContractsView.as_view(), name='contracts'),
