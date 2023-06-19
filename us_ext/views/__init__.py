@@ -1,1 +1,1 @@
-from .contracts_views import ContractView, ContractsView
+from .contracts import ContractView, ContractsView

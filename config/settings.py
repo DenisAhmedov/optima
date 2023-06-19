@@ -1,5 +1,6 @@
 import environ
 import os
+import datetime
 from pathlib import Path
 
 env = environ.Env(
@@ -25,7 +26,7 @@ DEBUG = env('DEBUG')
 if DEBUG:
     ALLOWED_HOSTS = ['*']
 else:
-    ALLOWED_HOSTS = [env('HOST_IP'), '127.0.0.1']
+    ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(',')
 
 
 # Application definition
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
     # Local
     'us_ext.apps.UsExtConfig',
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
@@ -104,7 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-ru'
 
 TIME_ZONE = 'UTC'
 
@@ -120,6 +122,8 @@ STATIC_URL = 'static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+AUTH_USER_MODEL = 'users.User'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -128,3 +132,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 BILLING_ADDRESS = env('BILLING_ADDRESS')
 
 CONTRACTS_PARENT_ID = env('CONTRACTS_PARENT_ID')
+
+# Allowed addresses for access without authentication
+ALLOWED_ADDRESSES = env('ALLOWED_ADDRESSES').split(',')

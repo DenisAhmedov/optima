@@ -3,9 +3,12 @@ from rest_framework.views import APIView
 
 from config.settings import CONTRACTS_PARENT_ID
 from us_ext.container import contracts_service
+from us_ext.permissions import IsAllowedAddress
 
 
 class ContractsView(APIView):
+    permission_classes = [IsAllowedAddress]
+
     def post(self, request):
         contract_number: str = request.data.get('contract_number')
         if not contract_number:
@@ -32,6 +35,8 @@ class ContractsView(APIView):
 
 
 class ContractView(APIView):
+    permission_classes = [IsAllowedAddress]
+
     def get(self, request, contract_number: str):
         result: dict = contracts_service.get_contract(contract_number)
         status_code: int = 500 if result.get('error') else 200
